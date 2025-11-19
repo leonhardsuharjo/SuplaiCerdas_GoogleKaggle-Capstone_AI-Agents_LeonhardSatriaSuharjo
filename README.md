@@ -1,7 +1,7 @@
 #  Smart Material Price Monitor Agent 
 **Kaggle Google AI Agents Capstone Project 2025 - Leonhard Satria Suharjo**
 
-## My project in one sentence.
+## My project in 34 words.
 An enterprise AI agent system that monitors component prices across suppliers for an IOT manufacturing company. The system helps maintain profit margins on tender commitments by detecting price spikes before they impact production costs.
 
 ### Real world correlation and motivation 
@@ -9,3 +9,39 @@ As someone who is interested and engaged in device and manufacturing business mo
 
 ### Background knowledge 
 This project is submitted as a part of the Kaggle and Google AI Agents intensive course November 2025. Thus, I wil be applying what I learned from the program into this capstone project including involving key concepts into a chosen project track. 
+
+--- 
+
+## Three Key Concepts Demonstrated
+
+### 1. Multi-Agent System (Sequential Pattern)
+**Source:** Day 1b Notebook - "Sequential Workflows"
+
+- **PriceCheckAgent** → Retrieves prices from all suppliers
+- **ComparisonAgent** → Calculates price changes and risk levels  
+- **RecommendationAgent** → Provides procurement decision
+
+**Why Sequential?** Each step depends on the previous one's output. Price data must be retrieved before comparison, comparison must complete before recommendation.
+
+### 2. Custom Function Tools
+**Source:** Day 2a Notebook - "Building Custom Function Tools"
+
+**Tool 1: `check_component_prices()`**
+- Connects to supplier database
+- Returns structured data with status field
+- Follows ADK best practices (Day 2a Section 2.2)
+
+**Tool 2: `calculate_price_change()`**
+- Calculates percentage change
+- Detects risk levels (HIGH >10%, MEDIUM 5-10%, LOW <5%)
+- Clear type hints and docstrings
+
+### 3. Basic Evaluation
+**Source:** Day 4b Notebook - "Agent Evaluation"
+
+**Test Suite:**
+- Tool functionality tests
+- Workflow integration tests
+- Risk detection validation
+
+---
