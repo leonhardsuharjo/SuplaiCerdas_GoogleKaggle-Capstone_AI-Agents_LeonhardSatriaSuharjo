@@ -99,3 +99,79 @@ def calculate_price_change(current_price: float, last_month_price: float) -> dic
 # MULTI-AGENT SYSTEM (From Day 1b Notebook)
 # --- ---
 
+# Configure retry options (from both Day 1b and Day 2a)
+retry_config = types.HttpRetryOptions(
+    attempts=5,
+    exp_base=7,
+    initial_delay=1,
+    http_status_codes=[429, 500, 503, 504],
+)
+
+# AGENT 1: Price Check Agent
+# SOURCE: Day 1b, Section 3.1 "Sequential Workflows"
+# Pattern: output_key stores result in state for next agent
+price_check_agent = Agent(
+    name="PriceCheckAgent",
+    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
+    instruction='''You are a price monitoring specialist.
+
+    Use the check_component_prices tool to get current prices from all suppliers.
+    Present the findings clearly with supplier names and prices.
+    ''',
+    tools=[FunctionTool(check_component_prices)],
+    output_key="price_data"  # <-- From Day 1b: stores result in state
+)
+
+# AGENT 2: Comparison Agent  
+# SOURCE: Day 1b, Section 3.1 "Sequential Workflows"
+# Pattern: Uses {price_data} from previous agent's output_key
+comparison_agent = Agent(
+    name="ComparisonAgent",
+    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
+    instruction='''You are a price comparison analyst.
+
+    Given price data: {price_data}
+
+    Use the calculate_price_change tool for each supplier to:
+    1. Calculate price change from last month
+    2. Identify risk level
+    3. Find the best (lowest) current price
+
+    Present your analysis clearly.
+    ''',
+    tools=[FunctionTool(calculate_price_change)],
+    output_key="comparison_results"  # <-- Stores for next agent
+)
+
+# AGENT 3: Recommendation Agent
+# SOURCE: Day 1b, Section 3.1 "Sequential Workflows"
+# Pattern: Final agent that generates user-facing recommendation
+recommendation_agent = Agent(
+    name="RecommendationAgent",
+    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
+    instruction='''You are a procurement advisor.
+
+    Given comparison results: {comparison_results}
+
+    Provide clear recommendation:
+    1. Which supplier to use (lowest current price)
+    2. Any price spike alerts (>10% increase)
+    3. Impact on tender commitments
+
+    Format:
+    RECOMMENDATION: [Supplier Name]
+    CURRENT PRICE: €X.XX
+    ALERTS: [Any price spike warnings]
+    RATIONALE: [Why this choice]
+    ''',
+    output_key="final_recommendation"
+)
+
+# SEQUENTIAL AGENT - Runs agents in ORDER
+# SOURCE: Day 1b, Section 3 "Sequential Workflows - The Assembly Line"
+# Pattern: Guaranteed order execution - PriceCheck → Comparison → Recommendation
+root_agent = SequentialAgent(
+    name="SupplyChainMonitor",
+    sub_agents=[price_check_agent, comparison_agent, recommendation_agent]
+)
+
