@@ -1,0 +1,94 @@
+OUTPUT for each file run:
+1. RUNNING test_agent.py 
+PS D:\Career\Projects\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo> python -u "d:\Career\Projects\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo\test_agent.py"
+
+======================================================================
+RUNNING AGENT TESTS
+======================================================================
+
+Test 1: Price Check Tool
+--------------------------------------------------
+Price check tool working correctly
+   Found prices from 3 suppliers
+
+Test 2: Price Change Calculation
+--------------------------------------------------
+Change calculation working
+   4.50 vs 4.20 = 7.14% change
+Risk detection working
+   3.40 vs 2.90 = 17.24% = HIGH RISK
+
+Test 3: Complete Agent Workflow
+--------------------------------------------------
+Step 1: Price retrieval works
+   Supplier_A_Electronics: MEDIUM risk
+   Supplier_B_Components: HIGH risk
+   Supplier_C_Global: LOW risk
+Step 2: Price comparison works
+Agent workflow complete!
+
+======================================================================
+ALL TESTS PASSED!
+======================================================================
+
+2. RUNNING main.py
+
+PS D:\Career\Projects\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo> python -u "d:\Career\Projects\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo\CapstoneNov2025_AI-Agents_LeonhardSatriaSuharjo\main.py"
+Enter your GOOGLE_API_KEY: AIzaSyBHSWnF4pT3KBaMdKPO2azCQoaxT4AZ6CY
+
+Available components:
+  ESP32_WIFI: ESP32 WiFi Microcontroller Module
+  RELAY_5V: 5V Relay Switch Module
+  TEMP_SENSOR: DHT22 Temperature & Humidity Sensor
+  POWER_5V: 5V 2A Power Supply
+  LCD_DISPLAY: 16x2 LCD Display Module
+
+Enter component code to monitor (or press Enter for ESP32_WIFI): POWER_5V
+
+======================================================================
+SMART MATERIAL PRICE MONITOR
+Component: 5V 2A Power Supply
+======================================================================
+
+
+ ### Created new session: debug_session_id
+
+User > Check prices for component: POWER_5V
+Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+PriceCheckAgent > The prices for POWER_5V are as follows:
+- Supplier_A_Electronics: $2.5
+- Supplier_B_Components: $2.45
+- Supplier_C_Global: $2.3
+ComparisonAgent > The current prices for POWER_5V are as follows:
+
+- Supplier_A_Electronics: $2.5
+- Supplier_B_Components: $2.45
+- Supplier_C_Global: $2.3
+
+Here's a price change analysis for each supplier:
+
+**Supplier_A_Electronics:**
+- Percentage Change: 4.17%
+- Risk Level: LOW
+- Analysis: The price has increased slightly, but the risk is low.
+
+**Supplier_B_Components:**
+- Percentage Change: 1.24%
+- Risk Level: LOW
+- Analysis: The price has increased minimally, indicating a low risk.
+
+**Supplier_C_Global:**
+- Percentage Change: 2.22%
+- Risk Level: LOW
+- Analysis: This supplier shows a small price increase with a low-risk assessment.
+
+**Overall:**
+Supplier_C_Global currently offers the best price at $2.3. All suppliers present a low-risk scenario regarding price changes.
+RecommendationAgent > RECOMMENDATION: Supplier_C_Global
+CURRENT PRICE: $2.30
+ALERTS: No price spike alerts. All suppliers have a low-risk price change.
+RATIONALE: Supplier_C_Global offers the lowest current price for POWER_5V at $2.30. The price change analysis indicates a low-risk scenario across all suppliers, with only minor increases.
+
+======================================================================
+MONITORING COMPLETE
+======================================================================
