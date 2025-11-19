@@ -1,5 +1,6 @@
 #  SuplaiCerdas - Smart Material Price Monitor Agent for Enterprise Projects
-**Kaggle-Google AI Agents Capstone Project 2025 - Leonhard Satria Suharjo**
+## **Kaggle-Google AI Agents Capstone Project 2025 - Leonhard Satria Suharjo**
+![project image](Thumbnail.jpg)
 
 ## My project in 34 words.
 An enterprise AI agent system that monitors component prices across suppliers for an IOT manufacturing company. The system helps maintain profit margins on tender commitments by detecting price spikes before they impact production costs.
