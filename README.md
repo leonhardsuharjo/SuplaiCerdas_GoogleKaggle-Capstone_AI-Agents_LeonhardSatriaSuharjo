@@ -1,5 +1,6 @@
 #  SuplaiCerdas - Smart Material Price Monitor Agent for Enterprise Projects
 ## **Kaggle-Google AI Agents Capstone Project 2025 - Leonhard Satria Suharjo**
+MEDIUM blogpost link: https://medium.com/@leonhard.suharjo/how-i-connected-ai-agents-with-manufacturing-supply-chain-3ae196d61e8f
 ![project image](Thumbnail.jpg)
 
 ## My project in 34 words.
